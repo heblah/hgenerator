@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 09:52:48 by halvarez          #+#    #+#             */
-/*   Updated: 2022/06/22 11:03:59 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:10:02 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char	**get_files_data(int *nbfiles)
 	str_name = get_files_names();
 	files_name = ft_split(str_name, '\n');
 	free(str_name);
+	files_name = ft_sort(files_name);
 	while (files_name[*nbfiles])
 		*nbfiles += 1;
 	return (files_name);
@@ -85,4 +86,27 @@ char	*parent_process(int *fd, int rd, char *files_name)
 	}
 	free(buffer);
 	return (files_name);
+}
+
+char	**ft_sort(char **split)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+
+	i = -1;
+	while (*(split + ++i))
+	{
+		j = i;
+		while (*(split + ++j))
+		{
+			if (ft_strcmp(*(split + i), *(split + j)) > 0)
+			{
+				tmp = *(split + i);
+				*(split + i) = *(split + j);
+				*(split + j) = tmp;
+			}
+		}
+	}
+	return (split);
 }

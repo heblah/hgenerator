@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 09:46:05 by halvarez          #+#    #+#             */
-/*   Updated: 2022/06/22 12:25:10 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:09:28 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ void	write_prototype(int hfd, char *next_proto);
 /* hgen_utils_1.c =========================================================== */
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(const char *s1, const char *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+char	**ft_sort(char **split);
 
 /* ft_splic.c =============================================================== */
 char	**ft_split(char const *s, char c);

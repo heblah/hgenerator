@@ -6,7 +6,7 @@
 /*   By: halvarez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:27:58 by halvarez          #+#    #+#             */
-/*   Updated: 2022/06/23 08:48:39 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:11:43 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,15 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 	dst[i] = '\0';
 	return (len);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = -1;
+	while (s1[++i] || s2[i])
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
