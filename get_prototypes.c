@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:57:45 by halvarez          #+#    #+#             */
-/*   Updated: 2022/06/24 14:45:34 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:03:38 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ char	*get_prototypes(int cfd, int *eof)
 	}
 	else if (*proto >= 97 && *proto <= 122
 		&& ft_strncmp(proto, "static", gnl_strlen("static")) != 0
-		&& ft_strncmp(proto, "int\tmain", gnl_strlen("int\tmain")) != 0)
+		&& ft_strncmp(proto, "int\tmain", gnl_strlen("int\tmain")) != 0
+		&& ft_strncmp(proto, "/*", gnl_strlen("/*")) != 0
+		&& ft_strncmp(proto, "//", gnl_strlen("//")) != 0)
 		return (proto);
 	else
 	{
