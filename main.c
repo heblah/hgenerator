@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:42:55 by halvarez          #+#    #+#             */
-/*   Updated: 2022/06/24 15:21:33 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:37:03 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	header_writing(int hfd, char *h_name, char **files_name, int nbfiles)
 	header_ending(hfd);
 }
 
+//Need to be modify to rm header if it exists --> function v2
 int	create_header(char *h_name)
 {
 	int	hfd;
@@ -57,6 +58,28 @@ int	create_header(char *h_name)
 	hfd = open(h_name, O_CREAT | O_APPEND | O_RDWR, 0666);
 	if (hfd == -1)
 		hfd = open(h_name, O_TRUNC | O_APPEND | O_RDWR, 0666);
+	return (hfd);
+}
+
+int	create_headerv2(char *h_name)
+{
+	int	hfd;
+	int	id;
+
+	hfd = open(h_name, O_CREAT | O_APPEND | O_RDWR, 0666);
+	if (hfd == -1)
+	{
+		id = fork();
+		if (id == 0)
+		{
+			execl("/bin/rm", "rm", h_name, (char *)NULL);
+		}
+		else
+		{
+			wait(&id);
+			hfd = open(h_name, O_CREAT | O_APPEND | O_RDWR, 0666);
+		}
+	}
 	return (hfd);
 }
 
