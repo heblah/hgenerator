@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:42:55 by halvarez          #+#    #+#             */
-/*   Updated: 2022/08/02 11:37:03 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/08/02 13:44:09 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	main(int argc __attribute__((unused)), char **argv)
 	nbfiles = 0;
 	files_name = NULL;
 	hfd = create_header(argv[1]);
+	if (hfd == -1)
+		return (-1);
 	files_name = get_files_data(&nbfiles);
 	header_writing(hfd, argv[1], files_name, nbfiles);
 	freedata(files_name);
@@ -50,35 +52,22 @@ void	header_writing(int hfd, char *h_name, char **files_name, int nbfiles)
 	header_ending(hfd);
 }
 
-//Need to be modify to rm header if it exists --> function v2
 int	create_header(char *h_name)
-{
-	int	hfd;
-
-	hfd = open(h_name, O_CREAT | O_APPEND | O_RDWR, 0666);
-	if (hfd == -1)
-		hfd = open(h_name, O_TRUNC | O_APPEND | O_RDWR, 0666);
-	return (hfd);
-}
-
-int	create_headerv2(char *h_name)
 {
 	int	hfd;
 	int	id;
 
-	hfd = open(h_name, O_CREAT | O_APPEND | O_RDWR, 0666);
-	if (hfd == -1)
+	id = fork();
+	if (id == 0)
 	{
-		id = fork();
-		if (id == 0)
-		{
-			execl("/bin/rm", "rm", h_name, (char *)NULL);
-		}
-		else
-		{
-			wait(&id);
-			hfd = open(h_name, O_CREAT | O_APPEND | O_RDWR, 0666);
-		}
+		execl("/bin/rm", "rm", h_name, (char *)NULL);
+	}
+	else
+	{
+		wait(&id);
+		hfd = open(h_name, O_CREAT | O_APPEND | O_RDWR, 0666);
+		if (hfd == -1)
+			return (-1);
 	}
 	return (hfd);
 }
