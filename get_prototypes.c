@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:57:45 by halvarez          #+#    #+#             */
-/*   Updated: 2022/08/01 12:06:22 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/08/05 00:02:11 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,20 @@ char	*get_prototypes(int cfd, int *eof)
 
 void	write_prototype(int hfd, char *next_proto)
 {
+	int	i;
+
+	i = 0;
+	while (*next_proto && *next_proto != '\t')
+	{
+		write(hfd, next_proto, 1);
+		next_proto++;
+		i++;
+	}
+	if (i < 4)
+		write(hfd, "\t\t", 2);
+	else if (i < 8)
+		write(hfd, "\t", 1);
+	next_proto++;
 	write(hfd, next_proto, gnl_strlen(next_proto) - 1);
 	write(hfd, ";\n", 2);
 }
