@@ -1,5 +1,5 @@
 # hgenerator
-Generate a header with prototypes from current directory and sub-directories ignoring main, static functions and comments.  
+Generate a header with prototypes from current directory and sub-directories ignoring main, static functions and lines beginning with comment symbols.  
   1- make  
   2- cp hgenerator where_you_want  
   3- ./hgenerator your_header.h  
