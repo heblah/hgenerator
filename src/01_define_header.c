@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hgenerator.c                                       :+:      :+:    :+:   */
+/*   01_define_header.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:14:51 by halvarez          #+#    #+#             */
-/*   Updated: 2022/06/24 14:49:50 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/09/12 10:47:19 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-#include "hgenerator.h"
+#include "ft_hgenerator.h"
 
 void	header_protection(int fd, char *name)
 {

@@ -5,37 +5,43 @@
 #                                                     +:+ +:+         +:+      #
 #    By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/07 09:34:50 by halvarez          #+#    #+#              #
-#    Updated: 2022/07/28 09:32:56 by halvarez         ###   ########.fr        #
+#    Created: 2022/06/22 16:55:50 by halvarez          #+#    #+#              #
+#    Updated: 2022/09/12 10:58:00 by halvarez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME    	= hgenerator
-BUF			= 2000
-SRCS    	= get_next_line_bonus.c get_next_line_utils_bonus.c	files_managing.c \
-	get_prototypes.c hgenerator.c hgen_utils_1.c main.c ft_split.c
-OBJS		= ${SRCS:.c=.o}
-BONUS_O		= ${BONUS_C:.c=.o}
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -D BUFFER_SIZE=${BUF}
+SRCS_DIR	= ./src/
+SRCS		= 00_main.c 01_define_header.c 02_files_managing.c 03_get_prototypes.c
+OBJS		= $(addprefix ${SRCS_DIR}, ${SRCS:.c=.o})
+DEPS		= $(addprefix ${SRCS_DIR}, ${SRCS:.c=.d})
+CC			= cc 
+CFLAGS		= -Wall -Wextra -Werror -g -MMD -MP
+CLIB		= -Llibft -lft
+MAKE		= make
+CLEAN		= make clean
+FCLEAN		= make fclean
 RM			= rm -rf
 
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:${OBJS}
-		${CC} ${CFLAGS} -o ${NAME} ${SRCS}
+		${MAKE} -C libft
+		${CC} ${OBJS} ${CLIB} -o ${NAME}
 
 all:    ${NAME}
 
 clean:
-		${RM} ${OBJS}
-		${RM} ${BONUS_O}
+		${RM} ${OBJS} ${DEPS}
+		${CLEAN} -C libft
 
-fclean:    clean
+fclean: clean
 		${RM} ${NAME}
-        
+		${FCLEAN} -C libft
+
 re:     fclean all
+
+-include ${DEPS}
 
 .PHONY: all clean fclean re bonus

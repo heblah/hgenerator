@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   files_managing.c                                   :+:      :+:    :+:   */
+/*   02_files_managing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 09:52:48 by halvarez          #+#    #+#             */
-/*   Updated: 2022/07/21 13:10:02 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:22:27 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-#include "hgenerator.h"
+#include "ft_hgenerator.h"
 
 #define CHILD		0
 #define FILE_BUF	500
@@ -57,11 +56,11 @@ char	*get_files_names(void)
 int	child_process(int *fd)
 {
 	if (close(fd[0]) == -1)
-		return (1);
+		exit(-1);
 	if (dup2(fd[1], 1) == -1)
-		return (2);
+		exit(-1);
 	if (execl("/bin/find", "find", ".", "-name", "*.c", (char *) NULL) == -1)
-		return (3);
+		exit(-1);
 	return (0);
 }
 
@@ -82,7 +81,7 @@ char	*parent_process(int *fd, int rd, char *files_name)
 		}
 		buffer[rd] = '\0';
 		if (rd > 0)
-			files_name = ft_strjoin(files_name, buffer);
+			files_name = join_names(files_name, buffer);
 	}
 	free(buffer);
 	return (files_name);
@@ -100,7 +99,7 @@ char	**ft_sort(char **split)
 		j = i;
 		while (*(split + ++j))
 		{
-			if (ft_strcmp(*(split + i), *(split + j)) > 0)
+			if (ft_strcmp((const char *)*(split + i), (const char *)*(split + j)) > 0)
 			{
 				tmp = *(split + i);
 				*(split + i) = *(split + j);

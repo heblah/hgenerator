@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   00_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:42:55 by halvarez          #+#    #+#             */
-/*   Updated: 2022/08/02 13:44:09 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/09/12 11:39:52 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-#include "hgenerator.h"
+#include "ft_hgenerator.h"
 
 #define CHILD		0
 #define FILE_BUF	500
@@ -27,8 +26,8 @@ int	main(int argc __attribute__((unused)), char **argv)
 		printf("Please specify only one argument : the name of the header.\n");
 		return (-1);
 	}
-	else if (argv[1][gnl_strlen(argv[1]) - 1] != 'h'
-		|| argv[1][gnl_strlen(argv[1]) - 2] != '.' )
+	else if (argv[1][ft_strlen((const char *)argv[1]) - 1] != 'h'
+		|| argv[1][ft_strlen((const char *)argv[1]) - 2] != '.' )
 	{
 		printf("Please specify a '.h' entension.\n");
 		return (-1);

@@ -6,12 +6,11 @@
 /*   By: halvarez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 10:58:19 by halvarez          #+#    #+#             */
-/*   Updated: 2022/06/22 11:12:45 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/05/09 16:24:44 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-#include "hgenerator.h"
+#include "libft.h"
 
 static int	count_words(char const *s, char c);
 static int	ft_splitlen(char const *s, int *i, char c);

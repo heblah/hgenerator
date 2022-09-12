@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_prototypes.c                                   :+:      :+:    :+:   */
+/*   03_get_prototypes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:57:45 by halvarez          #+#    #+#             */
-/*   Updated: 2022/08/05 00:02:11 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:14:15 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-#include "hgenerator.h"
+#include "ft_hgenerator.h"
 
 void	write_file_line(int hfd, char *files_name)
 {
@@ -99,4 +98,32 @@ void	write_prototype(int hfd, char *next_proto)
 	next_proto++;
 	write(hfd, next_proto, gnl_strlen(next_proto) - 1);
 	write(hfd, ";\n", 2);
+}
+
+char	*join_names(char *s1, char *s2)
+{
+	char	*dest;
+	int		i;
+	int		j;
+
+	dest = NULL;
+	if (ft_strlen(s1) + ft_strlen(s2))
+		dest = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!dest)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1 && s1[i] && ft_strlen(s1) + ft_strlen(s2))
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	while (s2 && s2[j] && ft_strlen(s1) + ft_strlen(s2))
+	{
+		dest[i + j] = s2[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	free(s1);
+	return (dest);
 }
