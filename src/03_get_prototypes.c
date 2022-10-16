@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:57:45 by halvarez          #+#    #+#             */
-/*   Updated: 2022/09/12 12:14:15 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:56:53 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	write_prototype(int hfd, char *next_proto)
 	if (i < 4)
 		write(hfd, "\t\t", 2);
 	else if (i < 8)
+		write(hfd, "\t", 1);
+	else
 		write(hfd, "\t", 1);
 	next_proto++;
 	write(hfd, next_proto, gnl_strlen(next_proto) - 1);
