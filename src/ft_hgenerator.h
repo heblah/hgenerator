@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 09:46:05 by halvarez          #+#    #+#             */
-/*   Updated: 2022/09/12 12:28:16 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:46:13 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 void	header_writing(int hfd, char *h_name, char **files_name, int nbfiles);
 int		create_header(char *h_name);
 void	freedata(char **files_name);
+int		isvalid_extension(char *h_name);
 
 /* hgenerator.c ============================================================= */
 void	header_protection(int fd, char *name);

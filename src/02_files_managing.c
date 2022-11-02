@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 09:52:48 by halvarez          #+#    #+#             */
-/*   Updated: 2022/09/12 12:22:27 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:47:05 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	child_process(int *fd)
 		exit(-1);
 	if (dup2(fd[1], 1) == -1)
 		exit(-1);
-	if (execl("/bin/find", "find", ".", "-name", "*.c", (char *) NULL) == -1)
+	if (execl("/bin/find", "find", ".", "-name", "*.c*", (char *) NULL) == -1)
 		exit(-1);
 	return (0);
 }

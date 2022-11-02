@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:42:55 by halvarez          #+#    #+#             */
-/*   Updated: 2022/09/14 16:56:39 by halvarez         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:50:22 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	main(int argc __attribute__((unused)), char **argv)
 		printf("Please specify only one argument : the name of the header.\n");
 		return (-1);
 	}
-	else if (argv[1][ft_strlen((const char *)argv[1]) - 1] != 'h'
-		|| argv[1][ft_strlen((const char *)argv[1]) - 2] != '.' )
+	else if (isvalid_extension(*(argv + 1)) == 0)
 	{
 		printf("Please specify a '.h' entension.\n");
 		return (-1);
@@ -58,7 +57,7 @@ int	create_header(char *h_name)
 	id = fork();
 	if (id == 0)
 	{
-		execl("/bin/rm", "rm", h_name, (char *)NULL);
+		execl("/bin/rm", "rm", h_name, (char *) NULL);
 	}
 	else
 	{
@@ -83,4 +82,17 @@ void	freedata(char **files_name)
 	}
 	free(files_name);
 	files_name = NULL;
+}
+
+int	isvalid_extension(char *h_name)
+{
+	size_t	len;
+
+	len = ft_strlen(h_name);
+	if (ft_strncmp(".h", h_name + len - 2, 2) == 0)
+		return (1);
+	else if (ft_strncmp(".hpp", h_name + len - 4, 4) == 0)
+		return (1);
+	else
+		return (0);
 }
