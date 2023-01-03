@@ -6,12 +6,12 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 09:46:05 by halvarez          #+#    #+#             */
-/*   Updated: 2022/11/02 14:46:13 by halvarez         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:19:51 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HGENERATOR_H
-# define HGENERATOR_H
+#ifndef FT_HGENERATOR_H
+# define FT_HGENERATOR_H
 
 # include <sys/types.h>
 # include <sys/wait.h>
