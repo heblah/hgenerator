@@ -6,7 +6,7 @@
 /*   By: halvarez <halvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 09:52:48 by halvarez          #+#    #+#             */
-/*   Updated: 2022/11/02 14:47:05 by halvarez         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:19:17 by halvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	child_process(int *fd)
 		exit(-1);
 	if (dup2(fd[1], 1) == -1)
 		exit(-1);
-	if (execl("/bin/find", "find", ".", "-name", "*.c*", (char *) NULL) == -1)
+	if (execl("/bin/find", "find", ".",
+			"-name", "*.c", "-o", "-name", "*.cpp", (char *) NULL) == -1)
 		exit(-1);
 	return (0);
 }
@@ -99,7 +100,8 @@ char	**ft_sort(char **split)
 		j = i;
 		while (*(split + ++j))
 		{
-			if (ft_strcmp((const char *)*(split + i), (const char *)*(split + j)) > 0)
+			if (ft_strcmp((const char *)*(split + i),
+					(const char *)*(split + j)) > 0)
 			{
 				tmp = *(split + i);
 				*(split + i) = *(split + j);
